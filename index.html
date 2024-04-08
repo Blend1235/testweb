@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Quiz Tracker</title>
+    <!-- Include Material You CSS -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: auto; /* Allow body to expand */
+        min-height: 100vh; /* Minimum height is viewport height */
+        background-color: #212121; /* Dark mode */
+		}
+        #quizTracker {
+            text-align: center;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+            background-color: #424242; /* Dark mode */
+            color: #ffffff; /* Light text color for dark mode */
+        }
+		td, th {
+    padding: 10px 30px;
+    
+}
+
+        .btn {
+            font-size: 20px;
+            border-radius: 50px;
+            padding: 30px 30px; /* Taller buttons */
+            color: black;
+            text-align: center;
+            vertical-align: middle;
+            line-height: 30px; /* Centered text */
+            font-family: 'Courier New', Courier, monospace; /* Better font */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%; /* Same width */
+            margin-bottom: 10px; /* Gap between buttons */
+        }
+        .btn:focus {
+            background-color: inherit; /* No color change on focus */
+        }
+        .correct {
+            background-color: #6B8E23; /* More saturated */
+        }
+        .correct:hover {
+            background-color: #556B2F; /* Darker on hover */
+        }
+        .incorrect {
+            background-color: #ee2000; /* More saturated */
+        }
+        .incorrect:hover {
+            background-color: #aa1000; /* Darker on hover */
+        }
+        .not-attempted {
+            background-color: #FFD700; /* More saturated */
+        }
+		
+        .not-attempted:hover {
+            background-color: #DAA520; /* Darker on hover */
+        }
+        #results {
+            
+    overflow-y: auto;
+    overflow-x: auto;
+        }
+        @media only screen and (max-width: 600px) {
+            body {
+                font-size: 18px;
+            }
+            #quizTracker {
+                padding: 20px;
+            }
+            .btn {
+                font-size: 16px;
+                padding: 15px 15px;
+            }
+			td {
+        padding: 10px 5px; /* Reduce horizontal padding for small screens */
+    }
+        }
+    </style>
+</head>
+<body>
+    <div id="quizTracker">
+        <div id="results"></div>
+        <button class="waves-effect waves-light btn correct" onclick="updateCorrectAnswers(); this.blur();">Correct Answer</button>
+        <button class="waves-effect waves-light btn incorrect" onclick="updateIncorrectAnswers(); this.blur();">Incorrect Answer</button>
+        <button class="waves-effect waves-light btn not-attempted" onclick="updateNotAttempted(); this.blur();">Not Attempted</button>
+    </div>
+    <script src="quizTracker.js"></script>
+</body>
+</html>
