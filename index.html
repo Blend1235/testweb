@@ -8,82 +8,61 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
         body {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: auto; /* Allow body to expand */
-        min-height: 100vh; /* Minimum height is viewport height */
-        background-color: #212121; /* Dark mode */
-		}
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: auto;
+            min-height: 100vh;
+            background-color: #212121;
+            font-size: calc(10px + 2vmin); /* Responsive font size */
+        }
         #quizTracker {
             text-align: center;
-            padding: 25px;
+            padding: 5vmin; /* Responsive padding */
             border-radius: 10px;
             box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
-            background-color: #424242; /* Dark mode */
-            color: #ffffff; /* Light text color for dark mode */
+            background-color: #424242;
+            color: #ffffff;
         }
-		td, th {
-    padding: 10px 30px;
-    
-}
-
         .btn {
-            font-size: 20px;
+            font-size: calc(10px + 2vmin); /* Responsive font size */
             border-radius: 50px;
-            padding: 30px 30px; /* Taller buttons */
+            padding: 5vmin; /* Responsive padding */
             color: black;
             text-align: center;
             vertical-align: middle;
-            line-height: 30px; /* Centered text */
-            font-family: 'Courier New', Courier, monospace; /* Better font */
+            line-height: 30px;
+            font-family: 'Courier New', Courier, monospace;
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 100%; /* Same width */
-            margin-bottom: 10px; /* Gap between buttons */
+            width: 100%;
+            margin-bottom: 10px;
         }
         .btn:focus {
-            background-color: inherit; /* No color change on focus */
+            background-color: inherit;
         }
         .correct {
-            background-color: #6B8E23; /* More saturated */
+            background-color: #6B8E23;
         }
         .correct:hover {
-            background-color: #556B2F; /* Darker on hover */
+            background-color: #556B2F;
         }
         .incorrect {
-            background-color: #ee2000; /* More saturated */
+            background-color: #ee2000;
         }
         .incorrect:hover {
-            background-color: #aa1000; /* Darker on hover */
+            background-color: #aa1000;
         }
         .not-attempted {
-            background-color: #FFD700; /* More saturated */
+            background-color: #FFD700;
         }
-		
         .not-attempted:hover {
-            background-color: #DAA520; /* Darker on hover */
+            background-color: #DAA520;
         }
         #results {
-            
-    overflow-y: auto;
-    overflow-x: auto;
-        }
-        @media only screen and (max-width: 720px) {
-            body {
-                font-size: 14px;
-            }
-            #quizTracker {
-                padding: 15px;
-            }
-            .btn {
-                font-size: 12px;
-                padding: 10px 10px;
-            }
-			td {
-        padding: 5px 5px; /* Reduce horizontal padding for small screens */
-    }
+            overflow-y: auto;
+            overflow-x: auto;
         }
     </style>
 </head>
