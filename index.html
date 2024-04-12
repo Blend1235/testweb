@@ -7,6 +7,21 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
+	#controlPanel {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            display: flex;
+            gap: 10px;
+        }
+        #controlPanel button {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
         body {
         display: flex;
         justify-content: center;
@@ -93,6 +108,10 @@
         <button class="waves-effect waves-light btn correct" onclick="updateCorrectAnswers(); this.blur();">Correct Answer</button>
         <button class="waves-effect waves-light btn incorrect" onclick="updateIncorrectAnswers(); this.blur();">Incorrect Answer</button>
         <button class="waves-effect waves-light btn not-attempted" onclick="updateNotAttempted(); this.blur();">Not Attempted</button>
+    </div>
+	<div id="controlPanel">
+        <button id="resetButton" class="waves-effect waves-light btn"><i class="material-icons">refresh</i></button>
+        <button id="historyButton" class="waves-effect waves-light btn"><i class="material-icons">history</i></button>
     </div>
     <script src="quizTracker.js"></script>
 </body>
