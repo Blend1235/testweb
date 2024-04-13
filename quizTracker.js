@@ -23,8 +23,29 @@ class QuizTracker {
         this.incorrect_answers = 0;
         this.user_inputs = [];
         this.history = JSON.parse(localStorage.getItem('quizHistory')) || [];
-        this.correct_answer_value = 5; // default value
-        this.incorrect_answer_value = -1; // default value
+         this.correct_answer_value = Number(localStorage.getItem("correct_answer_value")) || 5; // default value
+        this.incorrect_answer_value = Number(localStorage.getItem("incorrect_answer_value")) || -1; // default value
+    }
+	setCookie(cname, cvalue, exdays) {
+        var d = new Date();
+        d.setTime(d.getTime() + (exdays*24*60*60*1000));
+        var expires = "expires="+ d.toUTCString();
+        document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+    }
+    getCookie(cname) {
+        var name = cname + "=";
+        var decodedCookie = decodeURIComponent(document.cookie);
+        var ca = decodedCookie.split(';');
+        for(var i = 0; i <ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0) == ' ') {
+                c = c.substring(1);
+            }
+            if (c.indexOf(name) == 0) {
+                return c.substring(name.length, c.length);
+            }
+        }
+        return "";
     }
 	reset() {
         this.history.push({
@@ -160,10 +181,12 @@ document.getElementById('fullScreen').addEventListener('click', () => quiz.goFul
 document.getElementById('resetButton').addEventListener('click', () => quiz.reset());
 document.getElementById('historyButton').addEventListener('click', () => quiz.display_history());
 document.getElementById('settingsButton').addEventListener('click', () => {
-    let correct_value = prompt("Enter the value for a correct answer:", quiz.correct_answer_value);
-    let incorrect_value = prompt("Enter the value for an incorrect answer:", quiz.incorrect_answer_value);
-    if (correct_value !== null && incorrect_value !== null) {
-        quiz.correct_answer_value = Number(correct_value);
-        quiz.incorrect_answer_value = Number(incorrect_value);
-    }
-});
+        let correct_value = prompt("Enter the value for a correct answer:", quiz.correct_answer_value);
+        let incorrect_value = prompt("Enter the value for an incorrect answer:", quiz.incorrect_answer_value);
+        if (correct_value !== null && incorrect_value !== null) {
+            quiz.correct_answer_value = Number(correct_value);
+            quiz.incorrect_answer_value = Number(incorrect_value);
+            localStorage.setItem("correct_answer_value", correct_value);
+            localStorage.setItem("incorrect_answer_value", incorrect_value);
+        }
+    });
