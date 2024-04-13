@@ -1,4 +1,21 @@
 class QuizTracker {
+	
+	openFullscreen() {
+        let elem = document.documentElement;
+        if (elem.requestFullscreen) {
+            elem.requestFullscreen();
+        } else if (elem.mozRequestFullScreen) { /* Firefox */
+            elem.mozRequestFullScreen();
+        } else if (elem.webkitRequestFullscreen) { /* Chrome, Safari and Opera */
+            elem.webkitRequestFullscreen();
+        } else if (elem.msRequestFullscreen) { /* IE/Edge */
+            elem.msRequestFullscreen();
+        }
+    }
+
+    goFullscreen() {
+        this.openFullscreen();
+    }
     constructor() {
         this.questions_attempted = 0;
         this.questions_not_attempted = 0;
@@ -137,5 +154,6 @@ function updateNotAttempted() {
     quiz.update_not_attempted();
 }
 
+document.getElementById('fullScreen').addEventListener('click', () => quiz.goFullscreen());
 document.getElementById('resetButton').addEventListener('click', () => quiz.reset());
 document.getElementById('historyButton').addEventListener('click', () => quiz.display_history());
