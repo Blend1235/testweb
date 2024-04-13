@@ -22,7 +22,9 @@ class QuizTracker {
         this.correct_answers = 0;
         this.incorrect_answers = 0;
         this.user_inputs = [];
-		this.history = JSON.parse(localStorage.getItem('quizHistory')) || [];
+        this.history = JSON.parse(localStorage.getItem('quizHistory')) || [];
+        this.correct_answer_value = 5; // default value
+        this.incorrect_answer_value = -1; // default value
     }
 	reset() {
         this.history.push({
@@ -78,17 +80,17 @@ class QuizTracker {
         this.user_inputs.push('.');
         this.display_results();
     }
-    calculate_positive_marks() {
-        return this.correct_answers * 5;
+     calculate_positive_marks() {
+        return this.correct_answers * this.correct_answer_value;
     }
     calculate_negative_marks() {
-        return this.incorrect_answers * -1;
+        return this.incorrect_answers * this.incorrect_answer_value;
     }
     calculate_total_marks() {
         return this.calculate_positive_marks() + this.calculate_negative_marks();
     }
     calculate_max_marks() {
-        return (this.questions_attempted + this.questions_not_attempted) * 5;
+        return (this.questions_attempted + this.questions_not_attempted) * this.correct_answer_value;
     }
     calculate_percentage() {
         return (this.calculate_total_marks() / this.calculate_max_marks()) * 100;
@@ -157,3 +159,11 @@ function updateNotAttempted() {
 document.getElementById('fullScreen').addEventListener('click', () => quiz.goFullscreen());
 document.getElementById('resetButton').addEventListener('click', () => quiz.reset());
 document.getElementById('historyButton').addEventListener('click', () => quiz.display_history());
+document.getElementById('settingsButton').addEventListener('click', () => {
+    let correct_value = prompt("Enter the value for a correct answer:", quiz.correct_answer_value);
+    let incorrect_value = prompt("Enter the value for an incorrect answer:", quiz.incorrect_answer_value);
+    if (correct_value !== null && incorrect_value !== null) {
+        quiz.correct_answer_value = Number(correct_value);
+        quiz.incorrect_answer_value = Number(incorrect_value);
+    }
+});
